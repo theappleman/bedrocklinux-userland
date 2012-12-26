@@ -36,6 +36,9 @@ do
 		for SHARE in $(bri -s $CLIENT)
 		do
 			TRYMOUNT=/bin/true
+			if mountpoint -q $DIRECTORY$SHARE
+			then
+				TRYMOUNT=/bin/false
 			if [ -d $SHARE ] && [ ! -d $DIRECTORY$SHARE ]
 			then
 				mkdir -p $DIRECTORY$SHARE
